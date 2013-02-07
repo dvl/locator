@@ -1,5 +1,8 @@
 <?php
 
+require_once 'filters/filter.name.php';
+require_once 'filters/filter.date.php';
+
 class Locator 
 {
 	private $names = array();
@@ -14,20 +17,20 @@ class Locator
 		return $this;
 	}
 
-	public function in($folder)
+	public function date($date)
 	{
-		if (!is_dir($folder)) {
-			throw new Exception('Invalid Folder');
-		}
-
-		$this->folder = $folder;
+		$this->dates[] = $date;
 
 		return $this;
 	}
 
-	public function date($date)
+	public function in($folder)
 	{
-		$this->dates = $date;
+		if (!is_dir($folder)) {
+			throw new \DomainException('Invalid Folder');
+		}
+
+		$this->folder = $folder;
 
 		return $this;
 	}
@@ -40,6 +43,12 @@ class Locator
 		if (count($this->names) !== 0) {
 			foreach ($this->names as $name) {
 				$iterator = new FileNameFilter($iterator, $name);
+			}
+		}
+
+		if (count($this->dates) !== 0) {
+			foreach ($this->dates as $date) {
+				$iterator = new DateFilter($iterator, $date);
 			}
 		}
 

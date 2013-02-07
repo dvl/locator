@@ -22,8 +22,8 @@ class DateFilter extends \FilterIterator
 		$operator = $list[0]; 
 
 		if (!in_array($operator, array('>', '<', '>=', '<=', '==', '!='))) {
-            throw new \InvalidArgumentException(sprintf('Invalid operator "%s".', $operator));
-        }
+			throw new \InvalidArgumentException(sprintf('Invalid operator "%s".', $operator));
+		}
 
 		unset($list[0]);
 

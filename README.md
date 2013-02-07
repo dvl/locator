@@ -14,13 +14,16 @@ Why
 Usage
 -----
 
-	$locator = new Locator();
-	$files = $locator->in('folder')
-			->name('/\.xml$/')
-			->date('since yesterday')
-			->get();
+	<?php
 
-	foreach ($files as $file) 
-	{
+	require_once 'locator.php';
+	require_once 'filters/filter.name.php';
+	require_once 'filters/filter.date.php';
+
+	$locator = new Locator();
+
+	$files = $locator->name('/\.txt$/')->date('>= yesterday')->in('resultados')->get();
+
+	foreach ($files as $file) {
 		echo $file->getPathName() . DIRECTORY_SEPARATOR . $file->getFileName() . '<br />';
 	}
