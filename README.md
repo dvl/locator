@@ -13,18 +13,18 @@ Why
 
 Usage
 -----
+```php
+<?php
+require_once 'locator.php';
 
-	<?php
+$locator = new Locator();
 
-	require_once 'locator.php';
+$files = $locator->name('/\.txt$/')
+				 ->date('>= yesterday')
+				 ->in('resultados')
+				 ->get();
 
-	$locator = new Locator();
-
-	$files = $locator->name('/\.txt$/')
-					 ->date('>= yesterday')
-					 ->in('resultados')
-					 ->get();
-
-	foreach ($files as $file) {
-		echo $file->getPathName() . DIRECTORY_SEPARATOR . $file->getFileName() . '<br />';
-	}
+foreach ($files as $file) {
+	echo $file->getPathName() . DIRECTORY_SEPARATOR . $file->getFileName() . '<br />';
+}
+```
