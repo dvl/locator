@@ -25,6 +25,6 @@ $files = $locator->name('/\.txt$/')
 				 ->get();
 
 foreach ($files as $file) {
-	echo $file->getPathName() . DIRECTORY_SEPARATOR . $file->getFileName() . '<br />';
+	echo $file->getPathName() . '/' . $file->getFileName() . '<br />';
 }
 ```
